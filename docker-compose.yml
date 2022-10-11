@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  dogs:
+    image: node:18-alpine
+    container_name: dogs
+    command: [ sh, -c, "npm i && npm run dev" ]
+    ports:
+      - "3000:3000"
+    working_dir: '/dogs'
+    tty: true
+    volumes:
+      - './:/dogs/'
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - cache:/data
+
+volumes:
+  cache:
+    driver: local
