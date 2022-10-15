@@ -4,10 +4,15 @@
             <label for="searchBreed" class="block text-sm font-medium text-gray-700">All breeds</label>
         </template>
         <template v-else>
-            <label for="searchBreed" class="block text-sm font-medium text-gray-700">Search breed</label>
+            <label for="searchBreed" class="block text-sm font-medium text-gray-700">
+                Search breed
+                <template v-if="searchBreed!==''">
+                    (match: {{userWantsToSeeBreeds.length}})
+                </template>
+            </label>
             <div class="relative mt-1 rounded-md shadow-sm">
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <MagnifyingGlassIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <MagnifyingGlassIcon class="h-3 w-3 text-gray-400" aria-hidden="true" />
                 </div>
                 <input v-model="searchBreed" name="searchBreed" id="searchBreed"
                     class="block w-full rounded-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -17,7 +22,6 @@
     </div>
 
     <form class="divide-y divide-gray-200">
-
         <template v-for="(breed, b) in userWantsToSeeBreeds" :key="breed">
             <div>
                 <fieldset>
@@ -52,6 +56,7 @@ const rootBreeds = computed(() => {
 })
 
 
+
 const searchBreed = ref('')
 const showAllBreeds = useState('showAllBreeds', () => false)
 
@@ -69,7 +74,7 @@ const userWantsToSeeBreeds = computed(() => {
         })
     }
 
-    return rootBreeds.value.slice(0, 20)
+    return rootBreeds.value.slice(0, 10)
 })
 
 const showAllBreedsFn = () => {
