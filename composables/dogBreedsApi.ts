@@ -1,4 +1,15 @@
-export const dogBreedsApi = async () => {
-    const response = await $fetch<{ status: string, message: string }>("/api/breeds");
-    return response.status === "success" ? response.message : {}
+type StatusType = 'success' | 'error'
+
+interface Breed {
+    key: string[];
+}
+
+interface DogBreedsResponse {
+    status: StatusType
+    message: Breed[]
+}
+
+export const dogBreedsApi = async (): Promise<Breed[] | null> => {
+    const response = await $fetch<DogBreedsResponse>("/api/breeds");
+    return response.status === "success" ? response.message : null
 }
