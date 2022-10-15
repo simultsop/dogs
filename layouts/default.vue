@@ -32,7 +32,7 @@
                                     <div>
                                         <slot />
 
-                                        <!-- <Redis/> -->
+                                        <Redis />
                                     </div>
                                 </div>
                             </div>
