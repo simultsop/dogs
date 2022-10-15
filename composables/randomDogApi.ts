@@ -1,4 +1,11 @@
-export const randomDogApi = async () => {
-    const response = await $fetch<{ status: string, message: string }>("/api/random");
-    return response.status === "success" ? response.message : 'NotFound'
+type StatusType = 'success' | 'error'
+
+interface RandomDogsResponse {
+    status: StatusType
+    message: string[]
+}
+
+export const randomDogApi = async (dogs: number = 20): Promise<string[] | null> => {
+    const response = await $fetch<RandomDogsResponse>(`/api/random?dogs=${dogs}`);
+    return response.status === "success" ? response.message : null
 }
