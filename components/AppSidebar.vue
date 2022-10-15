@@ -48,9 +48,9 @@ const tabs = ref({
 })
 
 const tabComponents = {
-    filter: resolveComponent('FilterTab'),
-    share: resolveComponent('ShareTab'),
-    save: resolveComponent('SaveTab'),
+    filter: resolveComponent('TabsFilter'),
+    share: resolveComponent('TabsSave'),
+    save: resolveComponent('TabsShare'),
 }
 
 </script>

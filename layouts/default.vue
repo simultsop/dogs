@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-full">
-        <TheHeader />
+        <AppHeader />
 
         <main class="-mt-24 pb-8">
             <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -9,6 +9,6 @@
             </div>
         </main>
 
-        <TheFooter />
+        <AppFooter />
     </div>
 </template>

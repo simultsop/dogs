@@ -5,7 +5,7 @@
                 <div class="absolute left-0 flex-shrink-0 lg:static">
                     <a href="#">
                         <span class="sr-only">Dogs</span>
-                        <TheLogo />
+                        <PartialsLogo />
                     </a>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                             <div class="pt-3 pb-2">
                                 <div class="flex items-center justify-between px-4">
                                     <div>
-                                        <TheLogo />
+                                        <PartialsLogo />
                                     </div>
                                 </div>
                             </div>
@@ -39,7 +39,6 @@
         </TransitionRoot>
     </Popover>
 </template>
-  
 <script setup>
 import {
     Popover,
