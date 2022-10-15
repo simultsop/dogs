@@ -3,11 +3,11 @@
         <TheHeader />
 
         <main class="-mt-24 pb-8">
-
-
             <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h1 class="sr-only">Page title</h1>
                 <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
+                    <TheSidebar />
+
                     <div class="grid grid-cols-1 gap-4 lg:col-span-2">
                         <div>
                             <dl
@@ -24,7 +24,6 @@
                             </dl>
                         </div>
 
-
                         <section aria-labelledby="section-1-title">
                             <h2 class="sr-only" id="section-1-title">Page body</h2>
                             <div class="overflow-hidden rounded-lg bg-white shadow">
@@ -39,9 +38,6 @@
                         </section>
                     </div>
 
-
-
-                    <TheSidebar />
                 </div>
             </div>
         </main>
@@ -53,7 +49,6 @@
 
 
 <script setup>
-import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/vue/20/solid'
 import Redis from '~~/components/Redis.vue';
 
 const onlineUsers = useState('onlineUsers', () => 1)
