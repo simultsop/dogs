@@ -14,15 +14,22 @@
                                 <h2 class="text-2xl leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                                     Random Stream</h2>
                             </div>
+
+                            <span class="isolate inline-flex rounded-md shadow-sm">
+                                <button type="button"
+                                    class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-purple-700 px-4 py-2 text-sm font-medium text-white hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">10</button>
+                                <button type="button"
+                                    class="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">25</button>
+                                <button type="button"
+                                    class="relative -ml-px inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">50</button>
+                                <button type="button"
+                                    class="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">∞</button>
+                            </span>
                         </div>
                         <ul role="list"
                             class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                             <li v-for="dog in randomDogs" :key="dog" class="relative">
-                                <div
-                                    class="group aspect-w-10 aspect-h-10 block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
-                                    <img :src="dog" loading="lazy" alt=""
-                                        class="object-fill object-center hover:object-scale-down pointer-events-none group-hover:opacity-75 h-20" />
-                                </div>
+                                <PartialsDog :dog="dog" />
                             </li>
                         </ul>
                     </div>

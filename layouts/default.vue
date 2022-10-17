@@ -12,3 +12,7 @@
         <AppFooter />
     </div>
 </template>
+<script setup>
+const { data: resData } = await useFetch('/api/read?key=guest-savess')
+useState('guest-savess', () => resData.value ?? [])
+</script>

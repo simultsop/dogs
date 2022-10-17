@@ -3,11 +3,13 @@
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <div class="relative flex items-center justify-center py-5 lg:justify-between">
                 <div class="absolute left-0 flex-shrink-0 lg:static">
-                    <a href="#">
+                    <NuxtLink to="/">
                         <span class="sr-only">Dogs</span>
                         <PartialsLogo />
-                    </a>
+                    </NuxtLink>
                 </div>
+                <NuxtLink to="/mydogs" class="text-white font-medium text-gray-500 hover:text-gray-900">My Dogs
+                </NuxtLink>
             </div>
         </div>
 
@@ -28,7 +30,9 @@
                             <div class="pt-3 pb-2">
                                 <div class="flex items-center justify-between px-4">
                                     <div>
-                                        <PartialsLogo />
+                                        <NuxtLink to="/">
+                                            <PartialsLogo />
+                                        </NuxtLink>
                                     </div>
                                 </div>
                             </div>

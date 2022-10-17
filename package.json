@@ -11,6 +11,11 @@
     "@headlessui/vue": "^1.7.3",
     "@heroicons/vue": "^2.0.12",
     "@nuxtjs/tailwindcss": "^5.3.5",
+    "@types/clientjs": "^0.2.0",
     "nuxt": "3.0.0-rc.11"
+  },
+  "dependencies": {
+    "clientjs": "^0.2.1",
+    "nuxt-socket-io": "^3.0.6"
   }
 }
