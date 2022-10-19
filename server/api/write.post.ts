@@ -1,9 +1,11 @@
-export default defineEventHandler(async (event) => {
-    const query = getQuery(event)
-    const body = await useBody(event)
-    console.log('Writing')
-    console.log(query.key)
-    console.log(body)
-    await useStorage().setItem(`redis:${query.key}`, body)
-    return `${query.key} stored successfully`;
+export default defineEventHandler(async (event): Promise<string> => {
+    return new Promise(async (resolve, reject) => {
+        const query = getQuery(event)
+        const body = await useBody(event)
+        useStorage()
+            .setItem(`redis:${query.key}`, body)
+            .then()
+            .catch((error: any) => reject(error))
+            .then(() => resolve(`${query.key} stored successfully`))
+    })
 })

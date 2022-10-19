@@ -8,6 +8,7 @@
                         <PartialsLogo />
                     </NuxtLink>
                 </div>
+                <span class="text-white">UID: {{fingerprint}}</span>
                 <NuxtLink to="/mydogs" class="text-white font-medium text-gray-500 hover:text-gray-900">My Dogs
                 </NuxtLink>
             </div>
@@ -51,4 +52,7 @@ import {
     TransitionChild,
     TransitionRoot,
 } from '@headlessui/vue'
+
+const fingerprint = useState('guest-fingerprint', () => 'guest');
+
 </script>

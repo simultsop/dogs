@@ -12,7 +12,7 @@
                         <div class="md:flex md:items-center md:justify-between mb-8">
                             <div class="min-w-0 flex-1">
                                 <h2 class="text-2xl leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                                    My Dogs: {{myDogs?.length}}</h2>
+                                    My Dogs: {{myDogs.length}}</h2>
                             </div>
                         </div>
                         <ul role="list"
@@ -32,5 +32,6 @@
     </div>
 </template>
 <script setup>
-const myDogs = useState('guest-savess');
+const fingerprint = useState('guest-fingerprint', () => 'guest');
+const myDogs = useState(fingerprint.value, () => []);
 </script>

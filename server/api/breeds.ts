@@ -1,3 +1,5 @@
-export default defineEventHandler((event) => {
-    return $fetch<{ message: string, status: string }>("https://dog.ceo/api/breeds/list/all");
-})
+import { BreedListResponse } from "@/types";
+
+export default defineEventHandler((event): Promise<BreedListResponse> => {
+    return $fetch<BreedListResponse>("https://dog.ceo/api/breeds/list/all");
+});

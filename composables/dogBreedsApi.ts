@@ -1,15 +1,6 @@
-type StatusType = 'success' | 'error'
+import { BreedTree, BreedListResponse } from '@/types';
 
-interface Breed {
-    key: string[];
-}
-
-interface DogBreedsResponse {
-    status: StatusType
-    message: Breed[]
-}
-
-export const dogBreedsApi = async (): Promise<Breed[] | null> => {
-    const response = await $fetch<DogBreedsResponse>("/api/breeds");
-    return response.status === "success" ? response.message : null
+export const dogBreedsApi = async (): Promise<BreedTree | null> => {
+    const response = await $fetch<BreedListResponse>("/api/breeds");
+    return response.status === "success" ? response.message : null;
 }

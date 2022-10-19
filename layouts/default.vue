@@ -13,6 +13,22 @@
     </div>
 </template>
 <script setup>
-const { data: resData } = await useFetch('/api/read?key=guest-savess')
-useState('guest-savess', () => resData.value ?? [])
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
+const fpPromise = FingerprintJS.load({ monitoring: false })
+
+const fingerprint = useState('guest-fingerprint', () => 'guest');
+
+
+
+; (async () => {
+    const fp = await fpPromise
+    const result = await fp.get()
+    fingerprint.value = result.visitorId;
+
+    const myDogs = await myDogsApi(fingerprint.value) ?? []
+    console.log("Updating fingerprintstate")
+    console.log(myDogs)
+    useState(fingerprint.value, () => myDogs);
+})()
+
 </script>

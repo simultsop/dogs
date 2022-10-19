@@ -1,5 +1,4 @@
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<any> => {
     const query = getQuery(event)
-    const data = await useStorage().getItem(`redis:${query.key}`)
-    return data
+    return useStorage().getItem(`redis:${query.key}`)
 })

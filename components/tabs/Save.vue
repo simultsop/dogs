@@ -11,5 +11,6 @@
     </div>
 </template>
 <script setup>
-const myDogs = useState('guest-savess', () => []);
+const fingerprint = useState('guest-fingerprint', () => 'guest');
+const myDogs = useState(fingerprint.value, () => []);
 </script>

@@ -1,11 +1,6 @@
-type StatusType = 'success' | 'error'
+import { DogImage, RandomDogResponse } from '@/types';
 
-interface RandomDogsResponse {
-    status: StatusType
-    message: string[]
-}
-
-export const randomDogApi = async (dogs: number = 20): Promise<string[] | null> => {
-    const response = await $fetch<RandomDogsResponse>(`/api/random?dogs=${dogs}`);
-    return response.status === "success" ? response.message : null
+export const randomDogApi = async (dogs: number = 20): Promise<DogImage | null> => {
+    const response = await $fetch<RandomDogResponse>(`/api/random?dogs=${dogs}`);
+    return response.status === "success" ? response.message : null;
 }
