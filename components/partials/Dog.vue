@@ -20,13 +20,8 @@ if (process.client) {
 const addSaveDog = (url) => {
     const uid = useState('guest-uid', getUid);
     const myDogs = useState(uid.value);
-    console.log(uid.value);
-    console.log(url)
-    console.log(myDogs.value)
     if (Array.isArray(myDogs.value) && !myDogs.value?.includes(url)) {
-        console.log('Saving new dogs')
         myDogs.value.push(url)
-        console.log(myDogs.value)
         useFetch('/api/write?key=' + uid.value, {
             method: 'post',
             body: myDogs.value

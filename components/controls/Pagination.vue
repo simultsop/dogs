@@ -21,8 +21,27 @@
                         </svg>
                     </a>
                     <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
-                    <a v-for="n in maxPage" :key="'page'+n" href="#" aria-current="page" :class="pageClass(n)"
-                        @click.prevent="goPage(n)">{{n}}</a>
+
+                    <template v-if="max <= 10">
+                        <a v-for="n in max" :key="'page' + n" href="#" aria-current="page" :class="pageClass(n)"
+                            @click.prevent="goPage(n)">{{ n }}</a>
+                    </template>
+                    <template v-else>
+                        <a href="#" aria-current="page" :class="pageClass(currentPage)"
+                            @click.prevent="goPage(currentPage)">{{ currentPage }}</a>
+
+                        <a v-for="ln in 3" href="#" aria-current="page" :class="pageClass(currentPage + ln)"
+                            @click.prevent="goPage(currentPage + ln)">{{ currentPage + ln }}</a>
+
+                        <a href="#" aria-current="page" :class="pageClass(9999999)">...</a>
+
+                        <a v-for="rn of [3, 2, 1]" href="#" aria-current="page" :class="pageClass(max - rn)"
+                            @click.prevent="goPage(max - rn)">{{ max - rn }}</a>
+
+                        <a href="#" aria-current="page" :class="pageClass(max)" @click.prevent="goPage(max)">{{ max
+                        }}</a>
+                    </template>
+
                     <a href="#" @click.prevent="goNext"
                         class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20">
                         <span class="sr-only">Next</span>
@@ -40,8 +59,13 @@
     </div>
 </template>
 <script setup lang="ts">
+const props = defineProps({
+    max: {
+        type: Number,
+        default: 10
+    }
+})
 const currentPage = useState('currentPage', () => 1)
-const maxPage = 10;
 
 const goNext = () => {
     currentPage.value++;

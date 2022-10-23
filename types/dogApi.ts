@@ -20,6 +20,11 @@ export interface BreedListResponse {
     message: BreedTree
 }
 
+export interface BreedDogsResponse {
+    status: DogResponseStatus
+    message: DogImages
+}
+
 export interface Breed {
     key: string[];
 }
