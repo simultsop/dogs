@@ -28,7 +28,7 @@
                     <div>
                         <div class="flex items-center">
                             <input type="checkbox" class="h-4 rounded text-indigo-600 focus:ring-indigo-500 mr-2"
-                                :id="breed" />
+                                :id="breed" @change="toggleFilter(breed)" :checked="filters.includes(breed)" />
                             <label :for="breed" class="text-sm text-gray-600 capitalize">
                                 {{ breed }}
                                 <template v-if="breeds[breed].length > 0">
@@ -43,24 +43,32 @@
             </div>
         </template>
         <button v-if="showAllBreeds===false" type="button" @click="showAllBreedsFn"
-            class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Show
+            class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 mt-4">Show
             all</button>
+        <button v-if="filters.length>0" type="button" @click="resetFilters"
+            class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ml-2 mt-4">Reset</button>
     </form>
 </template>
-<script setup>
+<script setup lang="ts">
 import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+
+const filters = useState<string[]>('filters', () => [])
+const toggleFilter = (filter: string) => {
+    const filters = useState<string[]>('filters', () => [])
+    if (filters.value.includes(filter)) {
+        filters.value.splice(filters.value.indexOf(filter), 1);
+    } else {
+        filters.value.push(filter)
+    }
+};
 
 const breeds = await dogBreedsApi()
 const rootBreeds = computed(() => {
     return Object.keys(breeds)
 })
 
-
-
 const searchBreed = ref('')
 const showAllBreeds = useState('showAllBreeds', () => false)
-
-
 
 const userWantsToSeeBreeds = computed(() => {
     if (showAllBreeds.value && searchBreed.value === '') {
@@ -80,5 +88,9 @@ const userWantsToSeeBreeds = computed(() => {
 const showAllBreedsFn = () => {
     showAllBreeds.value = true;
     searchBreed.value = '';
+}
+
+const resetFilters = () => {
+    filters.value = []
 }
 </script>
