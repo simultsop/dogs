@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event): Promise<string> => {
     return new Promise(async (resolve, reject) => {
         const query = getQuery(event)
-        const body = await useBody(event)
+        const body = await useBody(event);
         useStorage()
             .setItem(`redis:${query.key}`, body)
             .then()

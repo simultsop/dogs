@@ -9,7 +9,7 @@
         <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
                 <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                    <a href="#" @click.prevent="goBack"
+                    <a v-if="currentPage != 1" href="#" @click.prevent="goBack"
                         class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20">
                         <span class="sr-only">Previous</span>
                         <!-- Heroicon name: mini/chevron-left -->
@@ -27,13 +27,16 @@
                             @click.prevent="goPage(n)">{{ n }}</a>
                     </template>
                     <template v-else>
-                        <a href="#" aria-current="page" :class="pageClass(currentPage)"
+                        <a v-if="currentPage <= maxLead" href="#" aria-current="page" :class="pageClass(currentPage)"
                             @click.prevent="goPage(currentPage)">{{ currentPage }}</a>
 
-                        <a v-for="ln in 3" href="#" aria-current="page" :class="pageClass(currentPage + ln)"
-                            @click.prevent="goPage(currentPage + ln)">{{ currentPage + ln }}</a>
+                        <a v-for="ln of leadingPages()" href="#" aria-current="page" :class="pageClass(ln)"
+                            @click.prevent="goPage(ln)">{{ ln }}</a>
 
                         <a href="#" aria-current="page" :class="pageClass(9999999)">...</a>
+
+                        <a v-if="currentPage > maxLead && currentPage < (max - 3)" href="#" aria-current="page"
+                            :class="pageClass(currentPage)" @click.prevent="goPage(currentPage)">{{ currentPage }}</a>
 
                         <a v-for="rn of [3, 2, 1]" href="#" aria-current="page" :class="pageClass(max - rn)"
                             @click.prevent="goPage(max - rn)">{{ max - rn }}</a>
@@ -42,7 +45,7 @@
                         }}</a>
                     </template>
 
-                    <a href="#" @click.prevent="goNext"
+                    <a v-if="currentPage != max" href="#" @click.prevent="goNext"
                         class="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20">
                         <span class="sr-only">Next</span>
                         <!-- Heroicon name: mini/chevron-right -->
@@ -65,6 +68,7 @@ const props = defineProps({
         default: 10
     }
 })
+const maxLead = ref(Math.floor(props.max / 2))
 const currentPage = useState('currentPage', () => 1)
 
 const goNext = () => {
@@ -79,6 +83,14 @@ const goBack = () => {
 
 const goPage = (page: number) => {
     currentPage.value = page;
+}
+
+const leadingPages = (): number[] => {
+    if (currentPage.value > maxLead.value) {
+        return [maxLead.value - 3, maxLead.value - 2, maxLead.value - 1]
+    } else {
+        return [currentPage.value + 1, currentPage.value + 2, currentPage.value + 3]
+    }
 }
 
 function pageClass(page: number): string {

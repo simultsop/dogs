@@ -5,7 +5,7 @@
                 <PartialsDog :dog="dog" />
             </li>
         </ul>
-        <ControlsPagination v-if="perPageDogs !== -1" :max="maximumPages" />
+        <ControlsPagination v-if="perPageDogs !== -1 && maximumPages > 1" :max="maximumPages" />
     </div>
 </template>
 <script setup lang="ts">

@@ -1,11 +1,13 @@
 <template>
-    <div>
+    <div class="overflow-hidden">
         <ul role="list" class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-            <li v-for="dog in dogsData" :key="dog" class="relative">
-                <PartialsDog :dog="dog" />
-            </li>
+            <ClientOnly>
+                <li v-for="dog in dogsData" :key="dog" class="relative">
+                    <PartialsDog :dog="dog" />
+                </li>
+            </ClientOnly>
         </ul>
-        <ControlsPagination v-if="perPageDogs!==-1" />
+        <ControlsPagination v-if="perPageDogs !== -1" />
     </div>
 </template>
 <script setup lang="ts">
