@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
 
   dogs:
@@ -8,7 +8,6 @@ services:
     ports:
       - "3000:3000"
     working_dir: '/dogs'
-    tty: true
     volumes:
       - './:/dogs/'
     environment:

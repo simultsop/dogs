@@ -14,5 +14,20 @@ export default defineNuxtConfig({
                 db: 0 // Defaults to 0
             }
         }
+    },
+    modules: [
+        'nuxt-headlessui'
+    ],
+    headlessui: {
+        prefix: 'Headless'
+    },
+    vite: {
+        server: {
+            hmr: {
+                protocol: 'ws',
+                host: 'localhost'
+            },
+            watch: { usePolling: true }
+        }
     }
 })

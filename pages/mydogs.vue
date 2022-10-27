@@ -12,7 +12,7 @@
                                     <h2
                                         class="text-2xl leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
                                         My Dogs
-                                        <span class="float-right">Total: {{myDogs?.length}}</span>
+                                        <span class="float-right">Total saved: {{myDogs?.length}}</span>
                                     </h2>
                                 </div>
                             </div>

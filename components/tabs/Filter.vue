@@ -12,7 +12,12 @@
             </label>
             <div class="relative mt-1 rounded-md shadow-sm">
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <MagnifyingGlassIcon class="h-3 w-3 text-gray-400" aria-hidden="true" />
+                    <svg class="h-3 w-3 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+
                 </div>
                 <input v-model="searchBreed" name="searchBreed" id="searchBreed"
                     class="block w-full rounded-md border-gray-300 pl-10 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -64,8 +69,6 @@
     </form>
 </template>
 <script setup lang="ts">
-import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
-
 const filters = useState<string[]>('filters', () => [])
 const toggleFilter = async (filter: string) => {
     const filters = useState<string[]>('filters', () => [])

@@ -25,6 +25,14 @@ Start the development server on http://localhost:3000
 npm run dev
 ```
 
+### Dockerized
+
+Start the development server on http://localhost:3000
+
+```bash
+docker-compose up -d
+```
+
 ## Production
 
 Build the application for production:

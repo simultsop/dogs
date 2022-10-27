@@ -5,30 +5,32 @@
             <div class="overflow-hidden rounded-lg bg-white shadow">
                 <div class="p-6">
                     <div class="w-full max-w-md px-2 sm:px-0">
-                        <TabGroup>
-                            <TabList class="flex space-x-1 rounded-xl p-1">
-                                <Tab v-for="tabLabel in tabs" as="template" :key="tabLabel" v-slot="{ selected }">
-                                    <button :class="[
-                                      'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
-                                      'ring-white ring-opacity-80 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                                      selected
-                                        ? 'bg-white shadow'
-                                        : 'text-blue-400 hover:bg-white hover:text-blue',
-                                    ]">
-                                        {{tabLabel}}
-                                    </button>
-                                </Tab>
-                            </TabList>
+                        <ClientOnly>
+                            <TabGroup>
+                                <TabList class="flex space-x-1 rounded-xl p-1">
+                                    <Tab v-for="tabLabel in tabs" as="template" :key="tabLabel" v-slot="{ selected }">
+                                        <button :class="[
+                                        'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
+                                        'ring-white ring-opacity-80 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                                        selected
+                                            ? 'bg-white shadow'
+                                            : 'text-blue-400 hover:bg-white hover:text-blue',
+                                        ]">
+                                            {{tabLabel}}
+                                        </button>
+                                    </Tab>
+                                </TabList>
 
-                            <TabPanels class="mt-2">
-                                <TabPanel v-for="tab in Object.keys(tabs)" :key="tab" :class="[
-                                  'rounded-xl bg-white p-3',
-                                  'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
-                                ]">
-                                    <component :is="tabComponents[tab]" />
-                                </TabPanel>
-                            </TabPanels>
-                        </TabGroup>
+                                <TabPanels class="mt-2">
+                                    <TabPanel v-for="tab in Object.keys(tabs)" :key="tab" :class="[
+                                    'rounded-xl bg-white p-3',
+                                    'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                                    ]">
+                                        <component :is="tabComponents[tab]" />
+                                    </TabPanel>
+                                </TabPanels>
+                            </TabGroup>
+                        </ClientOnly>
                     </div>
                 </div>
             </div>
@@ -39,7 +41,7 @@
 <script setup>
 import { ref } from 'vue'
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
-const onlineUsers = useState('onlineUsers', () => 0)
+const onlineUsers = useState('onlineUsers')
 
 const tabs = ref({
     filter: "Filter",
